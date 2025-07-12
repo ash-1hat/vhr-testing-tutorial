@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background rectangle -->
+  <rect x="0" y="0" width="200" height="60" rx="8" fill="#2c3e50"/>
+  
+  <!-- Microphone icon -->
+  <g transform="translate(20, 15)">
+    <path d="M15,0 C18.866,0 22,3.134 22,7 L22,23 C22,26.866 18.866,30 15,30 C11.134,30 8,26.866 8,23 L8,7 C8,3.134 11.134,0 15,0 Z" fill="#3498db"/>
+    <path d="M0,16 L0,20 C0,28.284 6.716,35 15,35 C23.284,35 30,28.284 30,20 L30,16 L34,16 L34,20 C34,30.493 25.493,39 15,39 L15,45 L25,45 L25,49 L5,49 L5,45 L15,45 L15,39 C4.507,39 -4,30.493 -4,20 L-4,16 L0,16 Z" fill="#f1c40f"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="60" y="25" font-family="Roboto, sans-serif" font-size="18" font-weight="700" fill="#ffffff">VHR</text>
+  <text x="60" y="45" font-family="Roboto, sans-serif" font-size="14" font-weight="300" fill="#ffffff">Testing Flow</text>
+</svg>

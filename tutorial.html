@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VHR Testing Flow Tutorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #f1c40f;
+            --light-bg: #f5f7fa;
+            --dark-text: #333;
+            --light-text: #fff;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* For screens smaller than 480px (mobile phones) */
+        @media (max-width: 480px) {
+            :root {
+                --container-padding: 10px;
+            }
+        }
+        
+        /* For screens between 481px and 768px (tablets) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            :root {
+                --container-padding: 15px;
+            }
+        }
+        
+        /* For screens larger than 768px (desktops) */
+        @media (min-width: 769px) {
+            :root {
+                --container-padding: 20px;
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            height: 60px;
+            width: auto;
+            max-width: 100%;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--card-shadow);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        header p {
+            margin: 10px 0 0;
+            font-weight: 300;
+        }
+        
+        .steps-container {
+            padding: 30px 0;
+        }
+        
+        .step {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-number {
+            background-color: var(--light-text);
+            color: var(--primary-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1rem;
+        }
+        
+        .step-title {
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        .step-content {
+            padding: 20px;
+        }
+        
+        .step-description {
+            margin-bottom: 20px;
+        }
+        
+        .step-image {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .step-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        .note {
+            background-color: rgba(241, 196, 15, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            margin-top: 40px;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .step-header {
+                padding: 12px 15px;
+            }
+            
+            .step-number {
+                width: 25px;
+                height: 25px;
+                font-size: 0.9rem;
+            }
+            
+            .step-title {
+                font-size: 1rem;
+            }
+            
+            .step-content {
+                padding: 15px;
+            }
+            
+            .step-image img {
+                max-height: 200px;
+            }
+            
+            .logo {
+                height: 50px;
+            }
+        }
+        
+        /* Small mobile screens */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+            
+            header p {
+                font-size: 0.9rem;
+            }
+            
+            .step-header {
+                padding: 10px;
+            }
+            
+            .step-number {
+                width: 22px;
+                height: 22px;
+                font-size: 0.8rem;
+                margin-right: 10px;
+            }
+            
+            .step-title {
+                font-size: 0.9rem;
+            }
+            
+            .step-content {
+                padding: 12px;
+            }
+            
+            .step-description p {
+                font-size: 0.9rem;
+            }
+            
+            .step-image img {
+                max-height: 180px;
+            }
+            
+            .logo {
+                height: 40px;
+            }
+            
+            .note p {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Image modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            transition: var(--transition);
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.svg" alt="VHR Testing Logo" class="logo">
+            </div>
+            <h1>VHR Testing Flow Tutorial</h1>
+            <p>A step-by-step guide to testing the Voice-to-Text Recording system</p>
+        </div>
+    </header>
+
+    <div class="container steps-container">
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">Login to the System</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>Use the credentials that have been shared with you to log into the system.</p>
+                    <p><strong>Username:</strong> [Shared Username]<br>
+                    <strong>Password:</strong> [Shared Password]</p>
+                </div>
+                <div class="step-image">
+                    <img src="1.png" alt="Login Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">Select Test User</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>After logging in, you will see a list of available test users. Currently, there is only one test user available.</p>
+                    <p>Click on the test user to proceed.</p>
+                </div>
+                <div class="step-image">
+                    <img src="2.png" alt="User Selection Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">Start Recording</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>Once you've selected the test user, you'll be taken to the recording interface.</p>
+                    <p>Click the "Start Recording" button to begin capturing audio.</p>
+                    <div class="note">
+                        <p>Make sure your microphone is properly connected and working before starting the recording.</p>
+                    </div>
+                </div>
+                <div class="step-image">
+                    <img src="3.png" alt="Start Recording Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-title">Stop Recording</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>Once you've finished speaking or completed your test script, click the "Stop Recording" button.</p>
+                </div>
+                <div class="step-image">
+                    <img src="4.png" alt="Stop Recording Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-title">Submit Recording</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>After stopping the recording, review it if necessary, then click the "Submit Recording" button to send it for processing.</p>
+                </div>
+                <div class="step-image">
+                    <img src="5.png" alt="Submit Recording Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <div class="step-title">Wait for Processing</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>The system needs approximately 15-20 seconds to process your recording.</p>
+                    <p>After waiting, refresh the page to see the newly generated record.</p>
+                    <div class="note">
+                        <p>If you don't see your recording after refreshing, wait a few more seconds and try refreshing again.</p>
+                    </div>
+                </div>
+                <div class="step-image">
+                    <img src="6.png" alt="Processing Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">7</div>
+                <div class="step-title">Select Record to View</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>After refreshing, you should see your new recording in the list of available records.</p>
+                    <p>Click on the record you want to view.</p>
+                </div>
+                <div class="step-image">
+                    <img src="7.png" alt="Record Selection Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">8</div>
+                <div class="step-title">View and Verify the Record</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>Review the transcription to check if the recording was correctly transcribed.</p>
+                    <p>Look for any mistakes or inaccuracies in the transcription.</p>
+                </div>
+                <div class="step-image">
+                    <img src="8.png" alt="Record Viewing Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">9</div>
+                <div class="step-title">Download PDF (Optional)</div>
+            </div>
+            <div class="step-content">
+                <div class="step-description">
+                    <p>If needed, you can download a PDF version of the transcription by clicking the "Download PDF" button.</p>
+                    <p>Open the downloaded PDF to verify its contents.</p>
+                </div>
+                <div class="step-image">
+                    <img src="9.png" alt="PDF Download Screen" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>For any issues or questions regarding the testing process, please contact the support team.</p>
+            <p>Last updated: July 12, 2025</p>
+        </div>
+    </footer>
+    <script>
+        // Image modal functionality
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = 'block';
+            modalImg.src = src;
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
